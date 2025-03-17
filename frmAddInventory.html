@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Inventory</title>
+    <script>
+        function loadSuppliers() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "get_suppliers.php", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("supplierDropdown").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+        window.onload = loadSuppliers; 
+    </script>
+</head>
+<body>
+    <h2>Add Inventory Item</h2>
+    <form action="do_addinventory.php" method="POST">
+        <table>
+            <tr>
+                <td>Product Name:</td>
+                <td><input type="text" size="20" name="txtproductname" required></td>
+            </tr>
+            <tr>
+                <td>Category:</td>
+                <td><input type="text" size="20" name="txtcategory" required></td>
+            </tr>
+            <tr>
+                <td>Stock Quantity:</td>
+                <td><input type="text" size="20" name="txtstockqty" required></td>
+            </tr>
+            <tr>
+                <td>Supplier Name:</td>
+                <td>
+                    <select name="txtsuppliername" id="supplierDropdown" required>
+                        <option value="">Loading suppliers...</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" name="btnAdd" value="Add Inventory"></td>
+            </tr>
+        </table>
+    </form>
+    <p><a href="index.html">Home</a></p>
+</body>
+</html>
