@@ -62,7 +62,7 @@
 </div>
 
 <script>
-    // REPLACE WITH YOUR ACTUAL HUGGING FACE API TOKEN
+    // REPLACE WITH YOUR ACTUAL HUGGING FACE API TOKEN (Keep the quotes!)
     const API_TOKEN = "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"; 
     const MODEL_ID = "facebook/mms-tts-eng";
 
@@ -77,7 +77,7 @@
         }
 
         speakBtn.disabled = true;
-        speakBtn.innerText = "Generating AI Voice...";
+        speakBtn.innerText = "Connecting to AI server...";
 
         try {
             const response = await fetch(`https://huggingface.co{MODEL_ID}`, {
@@ -89,20 +89,31 @@
                 body: JSON.stringify({ inputs: textInput })
             });
 
-            if (!response.ok) {
-                throw new Error("API error or model is loading. Try again in a moment.");
+            // Handles the case where the free Hugging Face server needs to boot up
+            if (response.status === 503) {
+                alert("The AI model is waking up! Please wait 20 seconds and tap 'Speak Text' again.");
+                return;
             }
 
-            // Convert raw binary data response into a playable audio link
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Status ${response.status}. Please check your token permissions.`);
+            }
+
             const blob = await response.blob();
             const audioUrl = URL.createObjectURL(blob);
             
             audioPlayer.src = audioUrl;
             audioPlayer.style.display = "block";
-            audioPlayer.play();
+            audioPlayer.load(); // Forces mobile Safari/Chrome to refresh the audio buffer
+            
+            // Play audio and handle mobile auto-play restrictions gracefully
+            audioPlayer.play().catch(e => {
+                alert("Audio is ready! Tap the play button on the audio bar to listen.");
+            });
 
         } catch (error) {
-            alert("Error: " + error.message);
+            alert("Fetch Error: " + error.message);
         } finally {
             speakBtn.disabled = false;
             speakBtn.innerText = "Speak Text";
