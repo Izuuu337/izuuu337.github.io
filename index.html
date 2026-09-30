@@ -3,168 +3,188 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RiderLink — Link. Meet. Ride.</title>
-  <meta name="description" content="Connect with local motorcycle riders, join spontaneous runs, and track group routes in real time." />
+  <title>Download RiderLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <style>
     :root {
-      --bg-dark: #0b0f19;
-      --card-bg: #151d2f;
-      --accent: #f97316; /* high-visibility rider orange */
-      --accent-hover: #ea580c;
-      --text-main: #f8fafc;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --primary: #ff6b00;
+      --primary-hover: #e65c00;
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --border: #223049;
+      --border: #334155;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
+      justify-content: center;
+      padding: 2rem 1rem;
     }
 
-    .container {
-      max-width: 640px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(249, 115, 22, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(249, 115, 22, 0.35);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 2.75rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
-    }
-
-    .tagline {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .download-card {
+    .card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 32px 24px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      margin-bottom: 40px;
+      max-width: 440px;
+      width: 100%;
+      padding: 2.25rem 1.75rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    .btn-download {
+    /* App Icon */
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255, 107, 0, 0.15);
+      color: var(--primary);
+      border-radius: 18px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 1.1rem;
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(255, 107, 0, 0.25);
+    }
+
+    h1 {
+      font-size: 1.6rem;
       font-weight: 700;
-      text-decoration: none;
-      padding: 16px 36px;
+      margin-bottom: 0.35rem;
+    }
+
+    .tagline {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Download Button */
+    .btn-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.9rem 1.25rem;
       border-radius: 10px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+      width: 100%;
     }
 
     .btn-download:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
+      background: var(--primary-hover);
+      transform: translateY(-1px);
     }
 
-    .release-info {
-      font-size: 0.85rem;
+    .file-meta {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      margin-top: 14px;
+      margin-top: 0.65rem;
+      margin-bottom: 2rem;
     }
 
-    /* Feature Grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Sideloading Instructions */
+    .instructions {
       text-align: left;
     }
 
-    .feature-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
+    .instructions h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .feature-item h3 {
-      font-size: 1rem;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .feature-item p {
-      font-size: 0.85rem;
+    .instructions ol {
+      padding-left: 1.2rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .instructions li {
+      margin-bottom: 0.4rem;
+    }
+
+    .instructions strong {
+      color: var(--text);
+      font-weight: 500;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 1.5rem;
+      text-align: center;
       font-size: 0.8rem;
-      color: #475569;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="badge">🏍️ Motorcyclist Network</span>
+
+  <main class="card">
+    <!-- App Logo / Header -->
+    <div class="app-icon">
+      <i class="fa-solid fa-motorcycle"></i>
+    </div>
     <h1>RiderLink</h1>
-    <p class="tagline">Link up, discover live local riders, coordinate group rallies, and hit the open roads together in real time.</p>
+    <p class="tagline">Community transit & logistics app</p>
 
-    <div class="download-card">
-      <!-- REPLACE WITH YOUR GITHUB RELEASES ASSET LINK -->
-      <a href="https://github.com/USERNAME/REPO_NAME/releases/latest/download/RiderLink.apk" class="btn-download">
-        Download RiderLink (APK)
-      </a>
-      <div class="release-info">Direct Android Build • Free & Open Source</div>
-    </div>
+    <!-- Download Action -->
+    <!-- Replace YOUR_FILE_ID_HERE with your Google Drive File ID -->
+    <a href="https://drive.google.com/file/d/1sgMtjvC7I8NgKDrfYCrA8GC8wtA9EyTC/view?usp=sharing" class="btn-download" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-download"></i>
+      Download APK
+    </a>
+    <div class="file-meta">Android • Direct Google Drive Link</div>
 
-    <div class="features">
-      <div class="feature-item">
-        <h3>📍 Live Rider Radar</h3>
-        <p>See riders currently on the road nearby and join impromptu group rides.</p>
-      </div>
-      <div class="feature-item">
-        <h3>🗺️ Group Rallies</h3>
-        <p>Set a rally point, define the route, and coordinate kickstands-up times.</p>
-      </div>
-      <div class="feature-item">
-        <h3>🛡️ Privacy First</h3>
-        <p>Control visibility zones and keep your home garage location hidden.</p>
-      </div>
-    </div>
+    <hr>
 
-    <footer>
-      RiderLink Community • Hosted with GitHub Pages
-    </footer>
-  </div>
+    <!-- Android Sideloading Instructions -->
+    <section class="instructions">
+      <h2><i class="fa-solid fa-circle-question" style="color: var(--primary);"></i> How to Install</h2>
+      <ol>
+        <li>Tap the <strong>Download APK</strong> button above.</li>
+        <li>Open your device's <strong>Downloads</strong> folder and tap the file.</li>
+        <li>If prompted, allow <strong>"Install unknown apps"</strong> in your settings.</li>
+        <li>Tap <strong>Install</strong> to complete setup.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    RiderLink &bull; Hosted on GitHub
+  </footer>
+
 </body>
 </html>
